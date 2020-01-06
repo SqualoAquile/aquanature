@@ -1,0 +1,26 @@
+#collapseFiltros {
+    .card-header {
+        .no-icon-dropdown {
+            &:after {
+                content: none;
+            }
+        }
+    }
+    .filtros-wrapper {
+        .filtros {
+            .col-excluir-linha {
+                display: none;
+            }
+            &:last-child {
+                .col-excluir-linha {
+                    display: initial;
+                }
+            }
+            &:first-child {
+                .col-excluir-linha {
+                    display: none;
+                }
+            }
+        }
+    }
+}

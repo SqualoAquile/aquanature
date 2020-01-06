@@ -1,0 +1,37 @@
+@import "variables";
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "node_modules/@fortawesome/fontawesome-free/scss/brands";
+@import "node_modules/@fortawesome/fontawesome-free/scss/regular";
+@import "node_modules/@fortawesome/fontawesome-free/scss/solid";
+
+$hamburger-layer-color: $primary;
+
+@import "node_modules/hamburgers/_sass/hamburgers/hamburgers";
+
+// Shared
+@import "shared/nav";
+@import "shared/sidebar";
+@import "shared/datatable";
+@import "shared/tables";
+@import "shared/historico";
+@import "shared/form";
+@import "shared/toast";
+@import "shared/modal";
+
+// Pages
+@import "pages/parametros";
+@import "pages/permissoes";
+@import "pages/administradoras";
+@import "pages/header_browser_filtros";
+@import "pages/relatorio_fluxo_caixa";
+@import "pages/orcamentos";
+
+body {
+    padding-top: $navbar-height;
+    .cursor-pointer {
+        cursor: pointer;
+    }
+}

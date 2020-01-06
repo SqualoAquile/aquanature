@@ -1,0 +1,88 @@
+.dataTables_wrapper {
+    margin-bottom: $spacer * 2;
+    .dataTables_scrollHead {
+        .table {
+            margin-bottom: 0;
+            thead {
+                th {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+    .dataTable {
+        thead {
+            tr {
+                th {
+                    &.sorting_asc {
+                        .fas {
+                            &::before {
+                                content: "\f0de";
+                            }
+                        }
+                    }
+                    &.sorting_desc {
+                        .fas {
+                            &::before {
+                                content: "\f0dd";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .highlight {
+            background-color: $warning;
+            border-radius: $badge-border-radius;
+        }
+        [type=checkbox] {
+            width: $spacer * 2;
+        }
+    }
+    .dataTables_paginate {
+        @extend .d-flex;
+        @extend .flex-nowrap;
+        @extend .align-items-center;
+        @extend .justify-content-center;
+        > span {
+            overflow-x: scroll;
+            @extend .d-flex;
+            @extend .flex-nowrap;
+            @extend .align-items-center;
+        }
+        .paginate_button {
+            @extend .btn;
+            margin: $spacer;
+            cursor: pointer;
+            &:not(.previous):not(.current):not(.next) {
+                @include button-outline-variant($primary);
+                &:not(:hover) {
+                    border-color: transparent!important;
+                }
+            }
+            &.previous,
+            &.next {
+                @include button-outline-variant($primary);
+            }
+            &.current {
+                @include button-variant($primary, $primary);
+            }
+            &.disabled {
+                display: none;
+            }
+        }
+    }
+    .limit-header-browser {
+        label {
+            @extend .d-flex;
+            @extend .align-items-center;
+            @extend .my-3;
+            select {
+                @extend .form-control;
+                @extend .form-control-sm;
+                @extend .w-auto;
+                @extend .mr-2;
+            }
+        }
+    }
+}

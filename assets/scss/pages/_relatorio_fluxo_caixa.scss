@@ -1,0 +1,18 @@
+.relatoriofluxocaixa {
+    .dataTable {
+        thead {
+            th {
+                &:first-child {
+                    display: none;
+                }
+            }
+        }
+        tbody {
+            td {
+                &:first-child {
+                    display: none;
+                }
+            }
+        }
+    }
+}

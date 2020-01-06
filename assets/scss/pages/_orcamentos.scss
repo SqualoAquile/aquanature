@@ -1,0 +1,35 @@
+.tableFixHead {
+    max-height: 300px;
+    #itensOrcamento {
+        thead {
+            > tr {
+                th {
+                    &:first-child {
+                        z-index: 9;
+                    }
+                }
+            }
+        }
+    }
+}
+#direita,
+#esquerda {
+    height: 1030px;
+    overflow-y: auto;
+}
+#form-principal {
+    &.was-validated {
+        #checkCancelar {
+            .form-check-input:valid ~ .form-check-label,
+            .form-check-input:invalid ~ .form-check-label {
+                color: $white;
+            }
+        }
+    }
+    #checkCancelar {
+        .form-check-input.is-valid ~ .form-check-label,
+        .form-check-input.is-invalid ~ .form-check-label {
+            color: $white;
+        }
+    }
+}

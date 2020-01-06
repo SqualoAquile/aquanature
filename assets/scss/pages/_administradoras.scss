@@ -1,0 +1,13 @@
+#tabela-taxas {
+    [data-placeholder] {
+        position: relative;
+        padding-left: $spacer * 2;
+        &:before {
+            content: attr(data-placeholder);
+            padding-right: $spacer;
+            position: absolute;
+            left: 0;
+            top: 7px;
+        }
+    }
+}

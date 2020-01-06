@@ -1,0 +1,12 @@
+.modais-require {
+    .modal-header.position-absolute {
+        z-index: 1;
+    }
+    .modal-body {
+        header {
+            > a {
+                display: none;
+            }
+        }
+    }
+}

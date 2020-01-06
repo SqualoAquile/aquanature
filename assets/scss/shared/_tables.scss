@@ -1,0 +1,120 @@
+.table {
+    .invalid-feedback {
+        font-weight: normal;
+    }
+    td {
+        vertical-align: middle;
+        @include media-breakpoint-up(lg) {
+            padding-top: .35rem;
+            padding-bottom: .35rem;
+        }
+    }
+    td {
+        .contatos {
+            height: 1.5rem;
+            overflow-y: auto;
+            &:hover {
+                height: auto;
+            }
+        }
+    }
+    &.table-nowrap {
+        white-space: nowrap;
+        &.first-column-fixed {
+            tr {
+                th:first-child,
+                td:first-child {
+                    position: sticky;
+                    left: 0;
+                }
+                th:first-child {
+                    background: $white;
+                }
+                &:nth-of-type(odd) {
+                    td:first-child {
+                        background: #f2f2f2;
+                    }
+                }
+                &:nth-of-type(even) {
+                    td:first-child {
+                        background: $white;
+                    }
+                }
+                &:hover {
+                    td:first-child {
+                        background: #ececec;
+                    }
+                }
+            }
+        }
+        &.last-column-fixed {
+            > thead,
+            > tbody {
+                tr {
+                    th:last-child,
+                    td:last-child {
+                        position: sticky;
+                        right: 0;
+                    }
+                    th:last-child {
+                        background: $white;
+                    }
+                    &:nth-of-type(odd) {
+                        td:last-child {
+                            background: #f2f2f2;
+                        }
+                    }
+                    &:nth-of-type(even) {
+                        td:last-child {
+                            background: $white;
+                        }
+                    }
+                    &:hover {
+                        td:last-child {
+                            background: #ececec;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.table-fixed {
+    width: 100%;
+    tbody {
+        max-height: 200px;
+        overflow-y: auto;
+        width: 100%;
+    }
+    thead,
+    tbody,
+    td,
+    th {
+        display: block;
+    }
+}
+.tableFixHead {
+    overflow-y: auto;
+    th {
+        position: sticky;
+        top: 0;
+        border: 0!important;
+        background-color: $white;
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            background: $gray-300;
+        }
+        &:after {
+            bottom: 0;
+            height: 2px;
+        }
+        &:before {
+            top: 0;
+            height: 1px;
+        }
+    }
+}

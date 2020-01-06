@@ -1,0 +1,12 @@
+.permissoes-form {
+    [type="checkbox"] {
+        &:valid,
+        &.is-valid,
+        &:invalid,
+        &.is-invalid {
+            & ~ .form-check-label {
+                color: initial!important;
+            }
+        }
+    }
+}

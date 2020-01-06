@@ -1,0 +1,34 @@
+.card.historico {
+    .wrapper {
+        min-height: 200px;
+        max-height: 400px;
+        overflow: scroll;
+        -webkit-overflow-scrolling: touch;
+        .cada-alteracao {
+            position: relative;
+            padding-left: $spacer * 2;
+            &:before {
+                content: '';
+                height: 100%;
+                width: 1px;
+                background: $gray-400;
+                position: absolute;
+                left: 0;
+                top: $spacer;
+                bottom: 0;
+            }
+            &:after {
+                content: "\f542";
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                position: absolute;
+                top: 0;
+                padding: $spacer / 2 0;
+                left: 0;
+                transform: translateX(-50%);
+                color: $gray-400;
+                background-color: $white;
+            }
+        }
+    }
+}

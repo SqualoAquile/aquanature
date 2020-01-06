@@ -1,0 +1,7 @@
+nav {
+    #navbarDropdown {
+        @include media-breakpoint-down(sm) {
+            max-width: 8rem;
+        }
+    }
+}

@@ -1,0 +1,53 @@
+/* Menu Horizontal */
+#nav, #divSair  {
+    background-color: #215d81 !important;
+    color: #FFF!important;
+}
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after, .hamburger.is-active .hamburger-inner, .hamburger.is-active .hamburger-inner::after {
+    background-color: #FFF !important;
+}
+
+.navbar-brand , #navbarDropdown, #divSair > a{
+    color: #FFF !important;
+}
+
+.navbar-brand:hover, #navbarDropdown:hover{
+    color: #333 !important;
+}
+#divSair > a:hover{
+    color: #333 !important;
+    background-color: #215d81;
+}
+
+/* menu Horizontal */
+
+#sidebar-wrapper {
+    background-color: #215d81 !important;
+}
+
+#sidebar-wrapper >ul>li.nav-item a.nav-link{
+    color: #FFF !important;
+}
+
+#sidebar-wrapper >ul>li.nav-item:hover{
+    background-color: #333;
+}
+
+#sidebar-wrapper >ul>li>ul> li.nav-item a.nav-link {
+    background-color: #215d81;
+    color: #FFF !important;
+}
+
+#sidebar-wrapper >ul>li>ul> li.nav-item a.nav-link:hover{
+    background-color: #333;
+}
+
+/* Rodapé */
+footer {
+    background-color: #215d81 !important;
+    color: #FFF !important;
+}
+footer > div.text-muted , #contatoLeme {
+    color: #FFF !important;
+}

@@ -1,0 +1,86 @@
+.form-check-wrapper {
+    &.is-valid,
+    &.is-invalid {
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: $spacer * 1.5;
+            height: $spacer * 1.5;
+            background-repeat: no-repeat;
+        }
+    }
+    &.is-invalid {
+        &:after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+        }
+    }
+    &.is-valid {
+        &:after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+        }
+    }
+    .form-check-input {
+        &:valid,
+        &:invalid,
+        &.is-invalid,
+        &.is-valid {
+            & ~ .form-check-label {
+                color: initial;
+            }
+        }
+    }
+}
+.relacional-dropdown-wrapper {
+    z-index: 1;
+    .relacional-dropdown {
+        max-height: 200px;
+        overflow-y: auto;
+        .list-group-item-action {
+            cursor: pointer;
+        }
+    }
+    .icon-dropdown {
+        position: absolute;
+        right: 0.25rem;
+        top: 0.25rem;
+        bottom: 0;
+        z-index: 1;
+        &:after {
+            display: none;
+        }
+    }
+    .relacional-dropdown-input {
+        &::-webkit-contacts-auto-fill-button {
+            visibility: hidden;
+            display: none !important;
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+        }
+        &:focus {
+            & ~ .toggle-btn {
+                & > i {
+                    &:before {
+                        content: "\f057";
+                        font-family: "Font Awesome 5 Free";
+                        font-weight: 900;
+                    }
+                }
+            }
+        }
+        
+        &.is-valid,
+        &.is-invalid,
+        &:invalid,
+        &:valid {
+            background-position: center right calc(1.475em + .1875rem);
+        }
+    }
+}
+.ui-widget.ui-widget-content {
+    z-index: $zindex-sticky!important;
+}

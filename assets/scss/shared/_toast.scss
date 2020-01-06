@@ -1,0 +1,18 @@
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+.my-toast {
+    z-index: $zindex-dropdown;
+    right: 0;
+    animation-name: fadeInDown;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
