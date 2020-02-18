@@ -1,8 +1,8 @@
 <?php
-class fornecedoresController extends controller{
+class cartoesController extends controller{
 
     // Protected - estas variaveis só podem ser usadas nesse arquivo
-    protected $table = "fornecedores";
+    protected $table = "cartoes";
     protected $colunas;
     
     protected $model;
@@ -69,8 +69,10 @@ class fornecedoresController extends controller{
             $this->model->adicionar($_POST);
             header("Location: " . BASE_URL . "/" . $this->table);
             exit;
+
         }else{ 
             $dados["colunas"] = $this->colunas;
+            // print_r($dados["colunas"]); exit;
             $dados["viewInfo"] = ["title" => "Adicionar"];
             $dados["labelTabela"] = $this->shared->labelTabela();
             $this->loadTemplate($this->table . "-form", $dados);

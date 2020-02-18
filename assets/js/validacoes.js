@@ -47,6 +47,7 @@ $(function () {
         });
     }, 500;
 
+
     //
     // Validação Padrão de Email
     //
@@ -107,7 +108,7 @@ $(function () {
         }
     };
 
-
+    
     // 
     // CONFIGURAÇÕES DO DATATABLE
     //
@@ -612,14 +613,83 @@ $(function () {
     // Campo Sigla
     //
     $('[data-mascara_validacao="sigla"]')
-        .mask('ZZZZZ', {
+        .mask('000000--ZZZZZ', {
             translation: {
                 'Z': {
                     pattern: /[A-Za-z]/
                 }
             }
         });
+    
+    //
+    // Campo Serial A
+    //
+    $('[data-mascara_validacao="seriala"]')
+    .mask('00000000--000000')
+    .on('blur touchstart', function () {
+        var $this = $(this);
+        $this.removeClass('is-valid is-invalid');
+        $this.siblings('.invalid-feedback').remove();
 
+        if ($this.val()) {
+            if ($this.attr('data-anterior') != $this.val()) {
+                if ($this.validationLength(16)) {
+                    // Valido
+                    $this.removeClass('is-invalid').addClass('is-valid');
+                    $this[0].setCustomValidity('');
+
+                } else {
+                    // Inválido
+                    $this.removeClass('is-valid').addClass('is-invalid');
+                    $this[0].setCustomValidity('invalid');
+                    $this.after('<div class="invalid-feedback">Preencha o campo no formato: 00000000--000000</div>');
+                }
+            }
+        }
+    });
+
+    //
+    // Campo Serial S
+    //
+    $('[data-mascara_validacao="serials"]')
+    .mask('NNNNN--ZZZZZ', {
+        translation: {
+            'Z': { pattern: /[A-Z0-9]/ },
+            'N': { pattern: /[0-9]/ }
+        }
+    })
+    .on('blur touchstart', function () {
+        var $this = $(this);
+        $this.removeClass('is-valid is-invalid');
+        $this.siblings('.invalid-feedback').remove();
+
+        if ($this.val()) {
+            if ($this.attr('data-anterior') != $this.val()) {
+                if ($this.validationLength(12)) {
+                    // Valido
+                    $this.removeClass('is-invalid').addClass('is-valid');
+                    $this[0].setCustomValidity('');
+
+                } else {
+                    // Inválido
+                    $this.removeClass('is-valid').addClass('is-invalid');
+                    $this[0].setCustomValidity('invalid');
+                    $this.after('<div class="invalid-feedback">Preencha o campo no formato: 00000--#####</div>');
+                }
+            }
+        }
+    });
+
+    //
+    // Campo Posição
+    //
+    $('[data-mascara_validacao="posicao"]')
+    .mask('NNNN', {
+        translation: {
+            'N': { pattern: /[0-9]/ }
+        }
+    })
+    
     //
     // Campo Email
     //

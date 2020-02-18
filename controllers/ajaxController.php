@@ -243,8 +243,44 @@ class ajaxController extends controller{
     echo json_encode($resp);
   }
   /////// CONTROLE FLUXO DE CAIXA
-  
-/////// CADASTRO DE CLIENTES
+///////////////////// CONDOMÍNIOS
+
+public function buscaCondominios(){
+  // print_r('teste'); exit;
+  $dados = array();
+  if(isset($_POST["term"]) && !empty($_POST["term"])){
+    $termo = addslashes(trim($_POST['term']));
+    $cond = new Condominios();
+    $dados = $cond->buscaCondominios($termo);
+  }
+  echo json_encode($dados);
+}
+
+
+public function buscaUnicoCondicionado(){
+  // print_r($_POST); exit;
+  $dados = array();
+  if(isset($_POST) && !empty($_POST)){
+    $tabela = ucfirst(addslashes($_POST['tabela']));
+    $inst = new $tabela();
+    $dados = $inst->buscaUnicoCondicionado($_POST);
+    // echo $dados; exit;
+  }
+  echo json_encode($dados);
+}
+//////////////////////////////////
+///////////////////// AÇÕES'
+
+public function adicionarAcao(){
+  // print_r('teste'); exit;
+  $dados = array();
+  if(isset($_POST) && !empty($_POST)){
+    $crt = new Cartoes();
+    $dados = $crt->adicionarAcao($_POST);
+  }
+  echo json_encode($dados);
+}
+//////////////////////////////////
   public function ConfereNomeCliente(){
     $dados = array();
     if(isset($_POST["q"]) && !empty($_POST["q"])){

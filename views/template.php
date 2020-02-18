@@ -13,16 +13,16 @@
          "link" => "/#",
          "filhos" => [
             [
-               "text" => "Clientes",
+               "text" => "Condomínios",
                "icon" => "fas fa-handshake",
-               "permissao" => "clientes_ver",
-               "link" => "/clientes"
+               "permissao" => "condominios_ver",
+               "link" => "/condominios"
             ],
             [
-               "text" => "Atividades",
+               "text" => "Cartões",
                "icon" => "fas fa-users",
-               "permissao" => "atividades_ver",
-               "link" => "/atividades"
+               "permissao" => "cartoes_ver",
+               "link" => "/cartoes"
             ]
             // ,
             // [

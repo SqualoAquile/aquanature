@@ -1,7 +1,7 @@
 <?php
-class Fornecedores extends model {
+class Condominios extends model {
 
-    protected $table = "fornecedores";
+    protected $table = "condominios";
     protected $permissoes;
     protected $shared;
 
@@ -163,6 +163,37 @@ class Fornecedores extends model {
                     "id" => $value["id"],
                     "label" => $value["nome"],
                     "value" => $value["nome"]
+                );     
+            }
+
+        }
+
+        // fazer foreach e criar um array que cada elemento tenha id: label: e value:
+        // print_r($nomes); exit; 
+        $array = $nomes;
+
+       return $array;
+    }
+
+    
+    public function buscaCondominios($termo){
+        // echo "aquiiii"; exit;
+        $array = array();
+        // 
+        $sql1 = "SELECT `id`, `nome_fantasia` FROM `condominios` WHERE situacao = 'ativo' AND nome_fantasia LIKE '%$termo%' ORDER BY nome_fantasia ASC";
+
+        $sql1 = self::db()->query($sql1);
+        $nomesAux = array();
+        $nomes = array();
+        if($sql1->rowCount() > 0){  
+            
+            $nomesAux = $sql1->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($nomesAux as $key => $value) {
+                $nomes[] = array(
+                    "id" => $value["id"],
+                    "label" => $value["nome_fantasia"],
+                    "value" => $value["nome_fantasia"]
                 );     
             }
 
