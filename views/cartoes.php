@@ -2,7 +2,7 @@
 // Transforma o nome do arquivo para o nome do módulo
 $modulo = str_replace("-form", "", basename(__FILE__, ".php"));
 // Constroi o cabeçalho
-require "_header_browser.php";
+require "_header_browser2.php";
 // Constroi a tabela
 require "_table_datatable.php";
 ?>

@@ -194,6 +194,56 @@ $(function () {
 
     }, 500);
 
+    $('[name=searchDataTable2]').on('keyup', function() {
+        dataTable.columns(4).search(this.value).draw();
+
+        var searchValue = $(this).val();
+
+        $('.contatos-filtrados').each(function () {
+            var $display = $(this).find('span');
+            $(this).find('.contatos-escondidos:contains("' + searchValue + '")').each(function () {
+                var $filtered = $(this),
+                    textFiltered = $filtered.text(),
+                    textDisplay = $display.text();
+
+                $display.text(textFiltered);
+                $filtered.text(textDisplay);
+            });
+        });
+
+        var body = $(dataTable.table().body());
+
+        body.unhighlight();
+        body.highlight(searchValue);
+
+
+    }, 500);
+
+    $('[name=searchDataTable3]').on('keyup', function() {
+        dataTable.columns(7).search(this.value).draw();
+
+        var searchValue = $(this).val();
+
+        $('.contatos-filtrados').each(function () {
+            var $display = $(this).find('span');
+            $(this).find('.contatos-escondidos:contains("' + searchValue + '")').each(function () {
+                var $filtered = $(this),
+                    textFiltered = $filtered.text(),
+                    textDisplay = $display.text();
+
+                $display.text(textFiltered);
+                $filtered.text(textDisplay);
+            });
+        });
+
+        var body = $(dataTable.table().body());
+
+        body.unhighlight();
+        body.highlight(searchValue);
+
+
+    }, 500);
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
     ///                                                                     
     ///     MÁSCARAS E VALIDAÇÕES DOS CAMPOS DO FORMULÁRIO
