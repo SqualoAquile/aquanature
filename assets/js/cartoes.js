@@ -147,6 +147,36 @@ $(function () {
         }
     });
 
+    $('#situacaoatual').on('blur', function(){
+        if( $(this).val() == 'Cancelado' ){
+           
+            $('#dt_cancelamento').removeAttr('readonly').attr('required', 'required');
+            
+        }else{
+
+            $('#dt_cancelamento').attr('readonly','readonly').removeAttr('required');
+        }
+    }).blur();
+
+    $('#dt_cancelamento').on('blur', function(){
+        if ( $(this).val() != '' ){
+            if( $('#situacaoatual').val() == 'Cancelado' ){
+                if( $(this).val() == '00/00/0000' ){
+                     $(this).val('');
+                }
+                 
+             }else{
+                if ( $(this).attr('data-anterior') == '00/00/0000' ){
+                    $(this).val($(this).attr('data-anterior'));
+                }else{
+                    $(this).val('');
+                } 
+                
+             }
+        }
+    });
+
+
 });// fim do $(function () {
 
 function calculaHoraFinal(){
