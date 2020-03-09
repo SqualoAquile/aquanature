@@ -206,4 +206,32 @@ class Condominios extends model {
        return $array;
     }
 
+    public function buscaUltimaPosicaoCondominio($request){
+        // echo "aquiiii"; exit;
+        $array = array();
+        $condominio = trim(addslashes($request['condominio']));
+        // 
+        $sql1 = "SELECT `id`, `posicao` FROM `cartoes` WHERE situacao = 'ativo' AND condominio = '$condominio' ORDER BY posicao ASC";
+
+        $sql1 = self::db()->query($sql1);
+        $nomesAux = array();
+        $posicoes = array();
+        if($sql1->rowCount() > 0){  
+            
+            $nomesAux = $sql1->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($nomesAux as $key => $value) {
+                $posicoes[] = intval( $value['posicao'] );
+            }
+            sort($posicoes,SORT_NUMERIC );
+
+        }
+
+        // fazer foreach e criar um array que cada elemento tenha id: label: e value:
+        // print_r($posicoes[count($posicoes)-1]); exit; 
+        $array = $posicoes[count($posicoes)-1];
+
+       return $array;
+    }
+
 }

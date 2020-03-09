@@ -49,6 +49,7 @@ class ajaxController extends controller{
 
   public function getRelacionalDropdown() {
     if (isset($_POST) && !empty($_POST)) {
+      // print_r($_POST); exit;
       $shared = new Shared($_POST["tabela"]);
       echo json_encode($shared->getRelacionalDropdown($_POST));
     }
@@ -256,6 +257,15 @@ public function buscaCondominios(){
   echo json_encode($dados);
 }
 
+public function buscaUltimaPosicaoCondominio(){
+  // print_r('teste'); exit;
+  $dados = array();
+  if(isset($_POST) && !empty($_POST)){
+    $cond = new Condominios();
+    $dados = $cond->buscaUltimaPosicaoCondominio($_POST);
+  }
+  echo json_encode($dados);
+}
 
 public function buscaUnicoCondicionado(){
   // print_r($_POST); exit;

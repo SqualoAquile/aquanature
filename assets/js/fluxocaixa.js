@@ -116,8 +116,8 @@ $(function () {
 
                 var $this = $(this),
                     $relacionalDropdown = $this.parents('.relacional-dropdown-wrapper').find('.relacional-dropdown'),
-                    campo = 'nome';
-                    tabela = 'clientes';
+                    campo = 'nome_fantasia';
+                    tabela = 'condominios';
 
                     $.ajax({
                         url: baselink + '/ajax/getRelacionalDropdown',
@@ -152,7 +152,7 @@ $(function () {
                 var $this = $(this),
                     $relacionalDropdown = $this.parents('.relacional-dropdown-wrapper').find('.relacional-dropdown'),
                     campo = 'nome_fantasia';
-                    tabela = 'fornecedores';
+                    tabela = 'condominios';
 
                 $.ajax({
                     url: baselink + '/ajax/getRelacionalDropdown',
@@ -177,6 +177,86 @@ $(function () {
             });
         }
     });
+    $('input[type=radio]').change(function () {
+        $("#forma_pgto").val("").removeClass('is-valid is-invalid').siblings('.invalid-feedback').remove();
+        $("#conta_sintetica").val("").removeClass('is-valid is-invalid').siblings('.invalid-feedback').remove();
+        $("#conta_analitica").val("").removeClass('is-valid is-invalid').siblings('.invalid-feedback').remove();
+        $('#conta_analitica').empty().append('<option value="" selected  >Selecione</option>');
+        limpaCondPgto();
+
+        if ($("#Receita").is(":checked")) {            
+
+            //troca a base de informações do dropdown do favorecido
+            $('#favorecido').parent().parent().find('span').text('Pago Por');
+            $( "#favorecido" ).autocomplete({
+                source: function( request, response ) {
+                $.ajax( { 
+                    url: baselink + '/ajax/buscaCondominios',
+                    type:"POST",
+                    dataType: "json",
+                    data: {
+                        term: request.term.trim()
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                } );
+                },
+                minLength: 2,
+                select: function( event, ui ) {
+                },
+                response: function( event, ui ) {
+                }
+            });
+            $( "#favorecido" ).focus(function(event) {
+                var termo = "";
+                termo = $(this).val().trim();
+                $(this).autocomplete( "search" , termo );
+            });
+            $( "#favorecido" ).parent('div').addClass('ui-widget');
+            $( "#favorecido" ).on('click',function(){
+                $(this).keyup();
+            });
+            $( "#favorecido" ).blur(function(){});
+            
+
+        } else {
+
+            //troca a base de informações do dropdown do favorecido
+            $('#favorecido').parent().parent().find('span').text('Favorecido');
+            $( "#favorecido" ).autocomplete({
+                source: function( request, response ) {
+                $.ajax( { 
+                    url: baselink + '/ajax/buscaCondominios',
+                    type:"POST",
+                    dataType: "json",
+                    data: {
+                        term: request.term.trim()
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                } );
+                },
+                minLength: 2,
+                select: function( event, ui ) {
+                },
+                response: function( event, ui ) {
+                }
+            });
+            $( "#favorecido" ).focus(function(event) {
+                var termo = "";
+                termo = $(this).val().trim();
+                $(this).autocomplete( "search" , termo );
+            });
+            $( "#favorecido" ).parent('div').addClass('ui-widget');
+            $( "#favorecido" ).on('click',function(){
+                $(this).keyup();
+            });
+            $( "#favorecido" ).blur(function(){});
+        }
+    });
+    $('input[type=radio]').change();
 
     $('#data_operacao').on('change blur', function(){
         if($("#cond_pgto").find(':selected').val() == 'À Vista' ){

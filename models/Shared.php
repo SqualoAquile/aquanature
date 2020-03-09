@@ -191,6 +191,7 @@ class Shared extends model {
 
         $sql = "SELECT " . $request["campo"] . " FROM " . $this->table . " WHERE situacao = 'ativo'";
 
+        // print_r($sql); exit;
         $sql = self::db()->query($sql);
         
         return $sql->fetchAll(PDO::FETCH_ASSOC);

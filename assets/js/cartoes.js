@@ -1,14 +1,32 @@
 
 $(function () {
-
+    
     // máscaras da posição, dos seriais, 
     // fazer lançamento das ações com o cliente
 
     $('#acoes_cliente').parent().parent().hide();
     $('#acoes_cliente').removeAttr('required');
     if( $('#posicao').attr('data-anterior') == '' ){
+        // adicionar
         $('#acoestxt').parent().hide();   
         $('#btn_acoes').parent().hide();
+
+        $( document ).tooltip({
+            position: {
+              my: "center bottom-20",
+              at: "center top",
+              using: function( position, feedback ) {
+                $( this ).css( position );
+                $( "<div>" )
+                  .addClass( "arrow" )
+                  .addClass( feedback.vertical )
+                  .addClass( feedback.horizontal )
+                  .appendTo( this );
+              }
+            }
+        });
+        $('#posicao').attr('title','(  0000  )');
+
     }else{
         $('#acoestxt').parent().show();
         if ($('#acoes_cliente').val() == '' ){
@@ -17,6 +35,7 @@ $(function () {
             $('#btn_acoes').parent().show();
         }   
         
+        $('#posicao').attr('readonly','readonly');
 
     }
 
@@ -114,6 +133,30 @@ $(function () {
             }
         }
     });
+    $( "#condominio" ).on('blur',function(){
+        if ( $('#posicao').attr('data-anterior') == '' ){
+            if( $(this).val() != '' ){
+                var condominio = $(this).val();
+                    condominio = condominio.trim();
+                $.ajax( {
+                    url: baselink + '/ajax/buscaUltimaPosicaoCondominio',
+                    type:"POST",
+                    dataType: "json",
+                    data: {
+                        condominio: condominio
+                    },
+                    success: function( data ) {
+                        // console.log('resposta:', data);
+                        $('#posicao').trigger('mouseout');  
+                        $('#posicao').attr('title','Última Posição:   (  ' + data + '  )');
+                        $('#posicao').trigger('mouseover');    
+                    }
+                } );
+            }else{
+                $('#posicao').attr('title','');
+            }
+        }
+    });
 
     $('#acoestxt').blur(function(){
         if ( $(this).val() != '' ){
@@ -176,6 +219,15 @@ $(function () {
         }
     });
 
+    $('#seriala, #serials').on('keyup', function(){
+        console.log('entrei')
+        if ($(this).val() != ''){
+            var caixaAlta = '';
+            caixaAlta =  $(this).val();
+            caixaAlta = caixaAlta.trim().toLocaleUpperCase();
+            $(this).val(caixaAlta);
+        }
+    });
 
 });// fim do $(function () {
 
