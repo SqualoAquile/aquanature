@@ -152,8 +152,26 @@ $(function () {
                         $('#posicao').trigger('mouseover');    
                     }
                 } );
+
+                var mensal = 0;
+                $.ajax( {
+                    url: baselink + '/ajax/buscaMensalidadePadrao',
+                    type:"POST",
+                    dataType: "json",
+                    data: {
+                        condominio: condominio
+                    },
+                    success: function( data ) {
+                        // console.log('resposta:', data);
+                        mensal = parseFloat( data );
+                        mensal = mensal.toFixed(2).replace(".",",");
+                        $('#mensalidade').val(mensal);
+                    }
+                } );
+
             }else{
                 $('#posicao').attr('title','');
+                $('#mensalidade').val('');
             }
         }
     });

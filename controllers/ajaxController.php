@@ -267,6 +267,16 @@ public function buscaUltimaPosicaoCondominio(){
   echo json_encode($dados);
 }
 
+public function buscaMensalidadePadrao(){
+  // print_r('teste'); exit;
+  $dados = array();
+  if(isset($_POST) && !empty($_POST)){
+    $cond = new Condominios();
+    $dados = $cond->buscaMensalidadePadrao($_POST);
+  }
+  echo json_encode($dados);
+}
+
 public function buscaUnicoCondicionado(){
   // print_r($_POST); exit;
   $dados = array();

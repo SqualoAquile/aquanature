@@ -229,9 +229,30 @@ class Condominios extends model {
 
         // fazer foreach e criar um array que cada elemento tenha id: label: e value:
         // print_r($posicoes[count($posicoes)-1]); exit; 
-        $array = $posicoes[count($posicoes)-1];
-
+        if (count($posicoes) > 0 ){
+            $array = $posicoes[count($posicoes)-1];
+        }
+        
        return $array;
+    }
+
+    public function buscaMensalidadePadrao($request){
+        // echo "aquiiii"; exit;
+        $array = array();
+        $condominio = trim(addslashes($request['condominio']));
+        // 
+        $sql1 = "SELECT `mensalidade` FROM `condominios` WHERE situacao = 'ativo' AND nome_fantasia	 = '$condominio'";
+
+        $sql1 = self::db()->query($sql1);
+        $nomesAux = array();
+        if($sql1->rowCount() > 0){  
+            
+            $nomesAux = $sql1->fetch(PDO::FETCH_ASSOC);
+            $array[] = $nomesAux['mensalidade'];
+
+        }
+
+       return $array[0];
     }
 
 }
