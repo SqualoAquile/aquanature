@@ -108,12 +108,12 @@ $(function () {
             var par = $(this).closest('tr');
             var tdNome = par.children("td:nth-child(1)");
             var tdSetor = par.children("td:nth-child(2)");
-            var tdTelefone = par.children("td:nth-child(3)");
-            var tdRamal = par.children("td:nth-child(4)");
-            var tdCelular = par.children("td:nth-child(5)");
+            var tdCelular = par.children("td:nth-child(3)");
+            var tdTelefone = par.children("td:nth-child(4)");
+            var tdRamal = par.children("td:nth-child(5)");
             var tdEmail = par.children("td:nth-child(6)");
 
-            content += '[' + tdNome.text() + ' * ' + tdSetor.text() + ' * ' + tdTelefone.text() + ' * ' + tdRamal.text() + ' * ' + tdCelular.text() + ' * ' + tdEmail.text() + ']';
+            content += '[' + tdNome.text() + ' * ' + tdSetor.text() + ' * ' + tdCelular.text() + ' * ' + tdTelefone.text() + ' * ' + tdRamal.text() + ' * ' + tdEmail.text() + ']';
         });
 
         $('[name=contatos]')
@@ -141,9 +141,9 @@ $(function () {
         var $par = $(this).closest('tr'),
             tdNome = $par.children("td:nth-child(1)"),
             tdSetor = $par.children("td:nth-child(2)"),
-            tdTelefone = $par.children("td:nth-child(3)"),
-            tdRamal = $par.children("td:nth-child(4)")
-            tdCelular = $par.children("td:nth-child(5)"),
+            tdCelular = $par.children("td:nth-child(3)"),
+            tdTelefone = $par.children("td:nth-child(4)"),
+            tdRamal = $par.children("td:nth-child(5)")
             tdEmail = $par.children("td:nth-child(6)");
 
         // Desabilita ele mesmo e os botões irmãos de editar e excluir da linha atual
@@ -153,9 +153,9 @@ $(function () {
 
         $('input[name=contato_nome]').val(tdNome.text()).attr('data-anterior', tdNome.text()).focus();
         $('input[name=contato_setor]').val(tdSetor.text()).attr('data-anterior', tdSetor.text());
+        $('input[name=contato_celular]').val(tdCelular.text()).attr('data-anterior', tdCelular.text());
         $('input[name=contato_telefone]').val(tdTelefone.text()).attr('data-anterior', tdTelefone.text());
         $('input[name=contato_ramal]').val(tdRamal.text()).attr('data-anterior', tdRamal.text());
-        $('input[name=contato_celular]').val(tdCelular.text()).attr('data-anterior', tdCelular.text());
         $('input[name=contato_email]').val(tdEmail.text()).attr('data-anterior', tdEmail.text());
 
         $('table#contatos thead tr[role=form]')
@@ -170,9 +170,9 @@ $(function () {
         Popula([
             $('input[name=contato_nome]').val(),
             $('input[name=contato_setor]').val(),
+            $('input[name=contato_celular]').val(),
             $('input[name=contato_telefone]').val(),
             $('input[name=contato_ramal]').val(),
-            $('input[name=contato_celular]').val(),
             $('input[name=contato_email]').val()
         ]);
 
