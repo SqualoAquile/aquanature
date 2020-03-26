@@ -300,6 +300,27 @@ public function adicionarAcao(){
   }
   echo json_encode($dados);
 }
+///////////////////////////////////
+///////////// FECHAMENTO
+public function fechamentoMensalCondominio(){
+  // print_r('teste'); exit;
+  $dados = array();
+  if(isset($_POST) && !empty($_POST)){
+    $fch = new Fechamento();
+    $dados = $fch->fechamentoMensalCondominio($_POST);
+  }
+  echo json_encode($dados);
+}
+
+public function condominiosSemFechamento(){
+  // print_r('teste'); exit;
+  $dados = array();
+  if(isset($_POST) && !empty($_POST)){
+    $fch = new Fechamento();
+    $dados = $fch->condominiosSemFechamento($_POST);
+  }
+  echo json_encode($dados);
+}
 //////////////////////////////////
   public function ConfereNomeCliente(){
     $dados = array();
@@ -502,6 +523,16 @@ public function adicionarAcao(){
     if (isset($_POST) && !empty($_POST)) {
       $param = new Parametros();
       $array = $param->buscaParametrosMaterial($_POST);
+      echo json_encode($array);
+    }
+  }
+
+  public function buscaParametros() {
+    $array = array();
+
+    if (isset($_POST) && !empty($_POST)) {
+      $param = new Parametros();
+      $array = $param->buscaParametros($_POST);
       echo json_encode($array);
     }
   }

@@ -209,6 +209,8 @@ class Shared extends model {
             $this->table = "ordemservico";
         } else if ( $this->table == "relatorioorcamentositens"){
             $this->table = "orcamentositens";
+        }else if ( $this->table == "relatoriocartoes"){
+            $this->table = "cartoes";
         }
         
         $sql = self::db()->query("SHOW FULL COLUMNS FROM " . $this->table);

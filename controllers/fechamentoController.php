@@ -1,8 +1,8 @@
 <?php
-class cartoesController extends controller{
+class fechamentoController extends controller{
 
     // Protected - estas variaveis só podem ser usadas nesse arquivo
-    protected $table = "cartoes";
+    protected $table = "fechamento";
     protected $colunas;
     
     protected $model;
@@ -72,7 +72,6 @@ class cartoesController extends controller{
 
         }else{ 
             $dados["colunas"] = $this->colunas;
-            // print_r($dados["colunas"]); exit;
             $dados["viewInfo"] = ["title" => "Adicionar"];
             $dados["labelTabela"] = $this->shared->labelTabela();
             $this->loadTemplate($this->table . "-form", $dados);
@@ -100,12 +99,12 @@ class cartoesController extends controller{
             
         }else{
             $dados["item"] = $this->model->infoItem($id); 
+            // print_r($dados["item"]); exit;
             $dados["colunas"] = $this->colunas;
             $dados["viewInfo"] = ["title" => "Editar"];
             $dados["labelTabela"] = $this->shared->labelTabela();
             $this->loadTemplate($this->table . "-form", $dados); 
         }
     }
-
 }   
 ?>

@@ -21,7 +21,7 @@
                         <input type="tel" class="form-control" id="contato_celular" name="contato_celular" data-mascara_validacao="celular" maxlength="14" required>
                     </th>
                     <th class="col-lg-2">
-                        <label for="contato_telefone">Telefone</label>
+                        <label for="contato_telefone" class="font-weight-normal">Telefone</label>
                         <input type="tel" class="form-control" id="contato_telefone" name="contato_telefone" data-mascara_validacao="telefone" maxlength="13" >
                     </th>
                     <th class="col-lg-1">

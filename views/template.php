@@ -7,8 +7,8 @@
          "link" => "/home"
       ],
       [
-         "text" => "Cadastros",
-         "icon" => "fas fa-save",
+         "text" => "Operações",
+         "icon" => "fas fa-pen",
          "permissao" => "%",
          "link" => "/#",
          "filhos" => [
@@ -23,6 +23,12 @@
                "icon" => "fas fa-users",
                "permissao" => "cartoes_ver",
                "link" => "/cartoes"
+            ],
+            [
+               "text" => "Fechamento Mês",
+               "icon" => "fas fa-check",
+               "permissao" => "cartoes_ver",
+               "link" => "/fechamento"
             ]
          ]
       ],
@@ -59,17 +65,18 @@
       //    "link" => "/#",
       //    "filhos" => [
       //       [
-      //          "text" => "Fluxo de Caixa",
+      //          "text" => "Cartões",
       //          "icon" => "fas fa-chart-line",
-      //          "permissao" => "relatoriofluxocaixa_ver",
-      //          "link" => "/relatoriofluxocaixa"
-      //       ],
-      //       [
-      //          "text" => "Produtos Pedidos",
-      //          "icon" => "fas fa-dollar-sign",
-      //          "permissao" => "relatoriopedidositens_ver",
-      //          "link" => "/relatoriopedidositens"
+      //          "permissao" => "relatoriocartoes_ver",
+      //          "link" => "/relatoriocartoes"
       //       ]
+      //       // ,
+      //       // [
+      //       //    "text" => "Produtos Pedidos",
+      //       //    "icon" => "fas fa-dollar-sign",
+      //       //    "permissao" => "relatoriopedidositens_ver",
+      //       //    "link" => "/relatoriopedidositens"
+      //       // ]
       //    ]
       // ],
       [
