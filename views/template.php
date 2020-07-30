@@ -58,27 +58,26 @@
             ]
          ]
       ],
-      // [
-      //    "text" => "Relatórios",
-      //    "icon" => "fas fa-table",
-      //    "permissao" => "%",
-      //    "link" => "/#",
-      //    "filhos" => [
-      //       [
-      //          "text" => "Cartões",
-      //          "icon" => "fas fa-chart-line",
-      //          "permissao" => "relatoriocartoes_ver",
-      //          "link" => "/relatoriocartoes"
-      //       ]
-      //       // ,
-      //       // [
-      //       //    "text" => "Produtos Pedidos",
-      //       //    "icon" => "fas fa-dollar-sign",
-      //       //    "permissao" => "relatoriopedidositens_ver",
-      //       //    "link" => "/relatoriopedidositens"
-      //       // ]
-      //    ]
-      // ],
+      [
+         "text" => "Relatórios",
+         "icon" => "fas fa-table",
+         "permissao" => "%",
+         "link" => "/#",
+         "filhos" => [
+            [
+               "text" => "Cartões",
+               "icon" => "fas fa-chart-line",
+               "permissao" => "relatoriocartoes_ver",
+               "link" => "/relatoriocartoes"
+            ],
+            [
+               "text" => "Fechamentos Mensais",
+               "icon" => "fas fa-dollar-sign",
+               "permissao" => "relatoriofechamentos_ver",
+               "link" => "/relatoriofechamentos"
+            ]
+         ]
+      ],
       [
          "text" => "Configurações",
          "icon" => "fas fa-cogs",

@@ -68,7 +68,7 @@
                                         <option selected disabled value="">Filtrar por...</option>
                                         <?php for($j = 1; $j < count($colunas); $j++): ?>
                                             <?php if($colunas[$j]["Comment"]["ver"] == "true"): ?>
-                                                <?php if(array_key_exists("label", $colunas[$j]["Comment"]) && array_key_exists("filtro_faixa", $colunas[$j]["Comment"]) && $colunas[$j]["Comment"]["filtro_faixa"]): ?>
+                                                <?php if(array_key_exists("label", $colunas[$j]["Comment"]) && array_key_exists("filtro_faixa", $colunas[$j]["Comment"]) && $colunas[$j]["Comment"]["filtro_faixa"] == 'true' ): ?>
                                                     <option value="<?php echo $indexFiltroFaixa ?>" data-tipo="<?php echo $colunas[$j]["Type"] ?>" data-mascara="<?php echo $colunas[$j]["Comment"]["mascara_validacao"] ?>">
                                                         <?php echo array_key_exists("label", $colunas[$j]["Comment"]) ? $colunas[$j]["Comment"]["label"] : $colunas[$j]["Field"] ?>
                                                     </option>
@@ -87,7 +87,7 @@
                                         <option selected disabled value="">Filtrar por...</option>
                                         <?php for($m = 1; $m < count($colunas); $m++): ?>
                                             <?php if ($colunas[$m]["Comment"]["ver"] == "true"): ?>
-                                                <?php if(!array_key_exists("filtro_faixa", $colunas[$m]["Comment"])): ?>
+                                                <?php if(array_key_exists("filtro_faixa", $colunas[$m]["Comment"]) && $colunas[$m]["Comment"]["filtro_faixa"] == 'false' ) : ?>
                                                     <option value="<?php echo $indexFiltroTexto ?>" data-tipo="<?php echo $colunas[$m]["Type"] ?>">
                                                         <?php echo array_key_exists("label", $colunas[$m]["Comment"]) ? $colunas[$m]["Comment"]["label"] : $colunas[$m]["Field"] ?>
                                                     </option>

@@ -44,10 +44,13 @@ $(function () {
         dataTable = window.dataTable,
         indexColumns = {
             acoes: 0,
-            valor_total: 17,
-            data_emissao: 15,
-            data_validade: 15,
-            status:8
+            qtdativos: 4,
+            qtdcancpagantes: 5,
+            qtdcobrados: 6,
+            precomed: 7,
+            valortotal: 8,
+            desconto: 10,
+            valorfinal: 11,
         }
     
     
@@ -60,30 +63,59 @@ $(function () {
     });
 
     function resumo (jsonData) {
+        // console.log(jsonData);
         // dataTable.page.len(-1).draw();
         // dataTable.draw();
         
         var rowData = jsonData,
-        quantidadeOrcamentos = 0,
-        totalOrcado = 0;
+        qtdativos = 0,
+        qtdcancpagantes = 0,
+        qtdcobrados = 0,
+        precomed = 0, precomedaux = 0,
+        valortotal = 0, valortotalaux = 0,
+        desconto = 0, descontoaux = 0,
+        valorfinal = 0, valorfinalaux = 0;
     
         i = 0;
         rowData.forEach(function () {
             // if (rowData[i][indexColumns.status].toLowerCase() == 'ativo') {
                                               
-                var valor = rowData[i][indexColumns.valor_total];
-                valor = valor.replace('R$  ', '');
-                valor = floatParaPadraoInternacional(valor);
-                totalOrcado = parseFloat(totalOrcado) + parseFloat(valor);
-                quantidadeOrcamentos++;
-            // }
+                precomedaux = rowData[i][indexColumns.precomed];
+                precomedaux = precomedaux.replace('R$  ', '');
+                precomedaux = floatParaPadraoInternacional(precomedaux);
+                precomed = parseFloat(precomed) + parseFloat(precomedaux);
+
+                valortotalaux = rowData[i][indexColumns.valortotal];
+                valortotalaux = valortotalaux.replace('R$  ', '');
+                valortotalaux = floatParaPadraoInternacional(valortotalaux);
+                valortotal = parseFloat(valortotal) + parseFloat(valortotalaux);
+
+                descontoaux = rowData[i][indexColumns.desconto];
+                descontoaux = descontoaux.replace('R$  ', '');
+                descontoaux = floatParaPadraoInternacional(descontoaux);
+                desconto = parseFloat(desconto) + parseFloat(descontoaux);
+
+                valorfinalaux = rowData[i][indexColumns.valorfinal];
+                valorfinalaux = valorfinalaux.replace('R$  ', '');
+                valorfinalaux = floatParaPadraoInternacional(valorfinalaux);
+                valorfinal = parseFloat(valorfinal) + parseFloat(valorfinalaux);
+                
+                qtdativos = parseInt(qtdativos) + parseInt(rowData[i][indexColumns.qtdativos]);
+                qtdcancpagantes = parseInt(qtdcancpagantes) + parseInt(rowData[i][indexColumns.qtdcancpagantes]);
+                qtdcobrados = parseInt(qtdcobrados) + parseInt(rowData[i][indexColumns.qtdcobrados]);
+                // }
             i++;
         });
-
+        precomed = parseFloat(precomed / i) ;
         i = 0;
 
-        $('#quantidadeOrcamentos').text(parseInt(quantidadeOrcamentos));
-        $('#totalOrcado').text(floatParaPadraoBrasileiro(totalOrcado));
+        $('#qtdativos').text(parseInt(qtdativos));
+        $('#qtdcancpagantes').text(parseInt(qtdcancpagantes));
+        $('#qtdcobrados').text(parseInt(qtdcobrados));
+        $('#precomed').text(floatParaPadraoBrasileiro(precomed));
+        $('#valortotal').text(floatParaPadraoBrasileiro(valortotal));
+        $('#desconto').text(floatParaPadraoBrasileiro(desconto));
+        $('#valorfinal').text(floatParaPadraoBrasileiro(valorfinal));
 
     };
 
