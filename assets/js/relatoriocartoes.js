@@ -53,7 +53,7 @@ $(function () {
     
     // dataTable.page.len(-1).draw();
     // dataTable.draw();
-    $('#DataTables_Table_0_length').addClass('d-none');
+    // $('#DataTables_Table_0_length').addClass('d-none');
 
     dataTable.on('xhr.dt', function (e, settings, json, xhr) {
         resumo(json.dataSemPaginacao);
@@ -62,7 +62,8 @@ $(function () {
     function resumo (jsonData) {
         // dataTable.page.len(-1).draw();
         // dataTable.draw();
-        
+        // $('#DataTables_Table_0_length').removeClass('d-none');
+
         var rowData = jsonData,
         quantidadeOrcamentos = 0,
         totalOrcado = 0;
@@ -95,12 +96,16 @@ $(function () {
 
     $('#collapseFluxocaixaResumo').on('shown.bs.collapse', function () {
         $('#DataTables_Table_0_wrapper').removeClass('d-none');
+        $('#DataTables_Table_0_length').removeClass('d-none');
+        // console.log('abriu')
       });
 
     $('#collapseFluxocaixaResumo').on('hidden.bs.collapse', function () {
-        $('#DataTables_Table_0_wrapper').addClass('d-none');
+        // $('#DataTables_Table_0_wrapper').addClass('d-none');
+        // $('#DataTables_Table_0_length').addClass('d-none');
         // dataTable.page.len(-1).draw();
         // dataTable.draw();
+        // console.log('fechou')
     });
 
     $('#limpar-filtro').on('click', function () {
@@ -116,7 +121,7 @@ $(function () {
 
     $('#card-body-filtros').on('change', function () {
         $('#collapseFluxocaixaResumo').collapse('hide');
-        // $('#DataTables_Table_0_wrapper').addClass('d-none');
+        $('#DataTables_Table_0_wrapper').addClass('d-none');
     });
 
     $('#botaoRelatorio').on('click', function(){
@@ -131,6 +136,7 @@ $(function () {
 
         if (pesquisar) {
             dataTable.draw();
+            $('#DataTables_Table_0_length').removeClass('d-none');
         } else {
             alert("Aplique um filtro para emitir um relatório!");
             event.stopPropagation(); 
