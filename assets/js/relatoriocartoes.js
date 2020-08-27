@@ -64,10 +64,10 @@ $(function () {
         // dataTable.draw();
         // $('#DataTables_Table_0_length').removeClass('d-none');
 
-        var rowData = jsonData,
+        var rowData = jsonData, inforelat = jsonData,
         quantidadeOrcamentos = 0,
         totalOrcado = 0;
-    
+        // console.log(rowData)
         i = 0;
         rowData.forEach(function () {
             // if (rowData[i][indexColumns.status].toLowerCase() == 'ativo') {
@@ -86,11 +86,32 @@ $(function () {
         $('#quantidadeOrcamentos').text(parseInt(quantidadeOrcamentos));
         $('#totalOrcado').text(floatParaPadraoBrasileiro(totalOrcado));
 
+        // limpar as informações do array que vai formar o relatório
+        for (var i=0; i < inforelat.length; i++){
+            inforelat[i].shift();
+        }
+        
+        // pegar o cabeçalho da tabela
+        var cabecalho=[], arrCab;
+        arrCab = $('.dataTables_scrollHeadInner table thead tr th');
+        for(var i=1; i< arrCab.length; i++){
+            cabecalho[i-1] = $('.dataTables_scrollHeadInner table thead tr th:eq('+i+')').text().trim();
+        }
+        inforelat.unshift(cabecalho);
+
+        // colocar as informações do resumo
+        inforelat.unshift(['Quant. Cartões', parseInt(quantidadeOrcamentos),'Valor Total',floatParaPadraoBrasileiro(totalOrcado)]);
+        console.log('info relatório:', inforelat);
+        $('#txt').val(JSON.stringify(inforelat));
+        // JSONToCSVConvertor(JSON.stringify(rowData), 'Teste', true);
+
     };
 
     $('#DataTables_Table_0_length').addClass('d-none');
     $('#DataTables_Table_0_wrapper').addClass('d-none');
+    $('#botaoRelatorioExcel').addClass('d-none');
     $('#graficos').addClass('d-none');
+
 
     // EVENTOS -----------------------------------------------------------------
 
@@ -98,6 +119,7 @@ $(function () {
         $('#DataTables_Table_0_wrapper').removeClass('d-none');
         $('#DataTables_Table_0_length').removeClass('d-none');
         // console.log('abriu')
+        $('#botaoRelatorioExcel').removeClass('d-none');
       });
 
     $('#collapseFluxocaixaResumo').on('hidden.bs.collapse', function () {
@@ -111,17 +133,13 @@ $(function () {
     $('#limpar-filtro').on('click', function () {
         $('#collapseFluxocaixaResumo').collapse('hide');
         $('#DataTables_Table_0_wrapper').addClass('d-none');
+        $('#botaoRelatorioExcel').addClass('d-none');
     });
-
-    // $('#graficos').on('click', function () {
-    //     $('#collapseFiltros').collapse('hide');
-    //     $('#collapseFluxocaixaResumo').collapse('hide');
-    //     $('#DataTables_Table_0_wrapper').addClass('d-none');
-    // });
 
     $('#card-body-filtros').on('change', function () {
         $('#collapseFluxocaixaResumo').collapse('hide');
         $('#DataTables_Table_0_wrapper').addClass('d-none');
+        $('#botaoRelatorioExcel').addClass('d-none');
     });
 
     $('#botaoRelatorio').on('click', function(){
@@ -143,5 +161,92 @@ $(function () {
         }
 
     });
+
+    $('#botaoRelatorioExcel').on('click', function(){
+
+        let pesquisar = false;
+
+        $('.filtros').each(function() {
+            if (($(this).find('select.input-filtro-faixa').val() && ($(this).find('input.input-filtro-faixa.min').val() || $(this).find('input.input-filtro-faixa.max').val())) || $(this).find('select.input-filtro-texto').val() && $(this).find('input.input-filtro-texto').val()) {
+                pesquisar = true;
+            }
+        });
+
+        if (pesquisar) {
+            var data = $('#txt').val();
+            if(data != ''){
+                // pegar o cabeçalho da tabela
+                // var cabecalho=[], arrCab;
+                // arrCab = $('.dataTables_scrollHeadInner table thead tr th');
+                
+                // for(var i=1; i< arrCab.length; i++){
+                //     cabecalho[i-1] = $('.dataTables_scrollHeadInner table thead tr th:eq('+i+')').text().trim();
+                // }
+                // console.log('cabecalho:',cabecalho);
+                // $('.dataTables_scrollHead th:eq(1)').text()
+                JSONToCSVConvertor(data, "Relatório Cartões");
+            }else{
+                return;
+            }
+
+        } else {
+            alert("Aplique um filtro para emitir um relatório!");
+            event.stopPropagation(); 
+        }
+
+    });
       
 });
+
+
+function JSONToCSVConvertor(JSONData, ReportTitle, Cabecalho='') {
+    //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
+    var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+    
+    var CSV = '';    
+    //Set Report title in first row or line
+    
+    CSV += ReportTitle + '\r\n\n';
+    
+    //1st loop is to extract each row
+    for (var i = 0; i < arrData.length; i++) {
+        var row = "";
+        
+        //2nd loop will extract each column and convert it in string comma-seprated
+        for (var index in arrData[i]) {
+            row += '"' + arrData[i][index] + '";';
+            // row += '"' + arrData[i][index] + '",';
+            // row += '"' + arrData[i][index] + '"\t';
+        }
+
+        row.slice(0, row.length - 1);
+        
+        //add a line break after each row
+        CSV += row + '\r\n';
+    }
+
+    if (CSV == '') {        
+        alert("Invalid data");
+        return;
+    }   
+    
+    //Generate a file name
+    var fileName = ReportTitle;
+    
+    //Initialize file format you want csv or xls
+    var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+    
+    //this trick will generate a temp <a /> tag
+    var link = document.createElement("a");    
+    link.href = uri;
+    
+    //set the visibility hidden so it will not effect on your web-layout
+    link.style = "visibility:hidden";
+    link.download = fileName + ".csv";
+    
+    //this part will append the anchor tag and remove it after automatic click
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+

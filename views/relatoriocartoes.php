@@ -42,6 +42,8 @@ require "_header_browser_relatorios.php";
                     </div>
                 </div>
 
+                <textarea id="txt" class="d-none" ></textarea>
+
             </div>
         </div>
     </div>

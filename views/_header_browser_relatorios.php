@@ -25,6 +25,7 @@
         </div>
         <div class="col-lg d-flex justify-content-end align-items-center">
             <!-- <button id="graficos"  type="button" class="btn btn-warning cursor-pointer mr-2" data-toggle="collapse" data-target="#collapseGraficos2">Gráficos</button>          -->
+            <button class="btn btn-secondary mx-2" id="botaoRelatorioExcel" >Excel</button>
             <button class="btn btn-success" id="botaoRelatorio" data-toggle="collapse" data-target="#collapseFluxocaixaResumo">Gerar Relatório</button>
         </div>
     </div>
