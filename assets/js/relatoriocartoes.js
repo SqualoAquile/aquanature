@@ -101,7 +101,7 @@ $(function () {
 
         // colocar as informações do resumo
         inforelat.unshift(['Quant. Cartões', parseInt(quantidadeOrcamentos),'Valor Total',floatParaPadraoBrasileiro(totalOrcado)]);
-        console.log('info relatório:', inforelat);
+        // console.log('info relatório:', inforelat);
         $('#txt').val(JSON.stringify(inforelat));
         // JSONToCSVConvertor(JSON.stringify(rowData), 'Teste', true);
 
